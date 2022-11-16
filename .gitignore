@@ -1,3 +1,4 @@
 \.vscode
 *.exe
 *.code-workspace
+test.c
