@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define n 3 // the number of vertex
-#define e 3// the number of edge
+#define n 4 // the number of vertex
+#define e 4// the number of edge
 typedef char vextype; // the type of vertex
 typedef float adjtype; // the type of weight
 
@@ -38,18 +38,18 @@ void create_adjarray(graph *g){
 }
 
 //DFS
-void DFS(graph *g, int i, int visited[]){
+void DFS(graph *g, int i, int *visited){
     int j;
     visited[i] = 1;
     printf("%c", g->vexs[i]);
     for(j=0;j<n;j++){
-        if(g->arcs[i][j] == 1 && visited[j] == 0){
+        if(g->arcs[i][j]==1 && visited[j]==0){
             DFS(g, j, visited);
         }
     }
 }
 
-// BFS
+//BFS
 void BFS(graph *g, int i, int visited[]){
     int j;
     int queue[n];
@@ -73,21 +73,22 @@ void BFS(graph *g, int i, int visited[]){
 }
 
 int main(){
-    graph g;
+    graph *g;
+    g = (graph *)malloc(sizeof(graph));
+    create_adjarray(g);
     int visited[n];
     int i;
-    create_adjarray(&g);
     for(i=0;i<n;i++){
         visited[i] = 0;
     }
     printf("DFS: ");
-    DFS(&g, 0, visited);
+    DFS(g, 0, visited);
     printf("\n");
     for(i=0;i<n;i++){
         visited[i] = 0;
     }
     printf("BFS: ");
-    BFS(&g, 0, visited);
+    BFS(g, 0, visited);
     printf("\n");
     return 0;
 }
