@@ -60,6 +60,18 @@ int Pop(LinkStack *S)
     }
 }
 
+//取栈顶元素
+int GetTop(LinkStack *S)
+{
+    if(Empty(S))
+    {
+        printf("栈空");
+        return 0;
+    }
+    else
+        return S->top->data;
+}
+
 //进制转换
 void Converse()
 {

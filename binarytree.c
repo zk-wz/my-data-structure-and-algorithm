@@ -80,6 +80,18 @@ void postorder(bitree *root){
     }
 }
 
+// exchange all the left and right child
+void exchange(bitree *root){
+    if(root){
+        bitree *temp;
+        temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+        exchange(root->left);
+        exchange(root->right);
+    }
+}
+
 // breadth first traverse
 void breadth_first(bitree *root){
     int front, rear;
