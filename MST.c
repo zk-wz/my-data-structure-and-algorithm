@@ -11,11 +11,10 @@ typedef struct
 }edge;
 
 // input the first vertex
-edge* prim(int i){
+edge* prim(int i, edge *tree){
     int j,k,m,v,min,max=100000;
     int d;
     edge e;
-    edge tree[n-1];
     v=i;
     int matrix[n][n] = {{0,9,4,max,max,max},{9,0,6,10,7,max},{4,6,0,8,max,5},{max,10,8,0,3,max},{max,7,max,3,0,2},{max,max,5,max,2,0}};
     // initialize the tree
@@ -56,19 +55,16 @@ edge* prim(int i){
 }
 
 // a is the num of the vertex, e is the num of the edge
-edge* kruskal(int a, int e){
+void kruskal(int a, int e, edge *tree){
     int h,i,j,k,l,m,t,min;
     int G[n];
-    edge tree[n-1];
     for(i = 0; i<= a-1; i++){
         G[i] = i;
     }
-    printf("111");
     for(i = 0; i<= e-1; i++){
         scanf("%d%d%d",&tree[i].fromvex,&tree[i].endvex,&tree[i].weight);
         tree[i].sign = 0;
     }
-    printf("111");
     j=0;
     while (j < a-1)
     {
@@ -98,19 +94,22 @@ edge* kruskal(int a, int e){
             }
         }
     }
-    return tree;
+
 }
 
 int main(){
     int i,sum=0;
-    edge *tree = prim(3);
+    edge tree_prim[n-1];
+    prim(3,tree_prim);
     for(i = 0; i < n-1; i++){
-        sum+=tree[i].weight;
+        sum+=tree_prim[i].weight;
     }
     printf("prim:%d\n",sum);
-    tree = kruskal(6,9);
+    sum = 0;
+    edge tree_kruskal[n-1];
+    kruskal(6,9,tree_kruskal);
     for(i = 0; i < n-1; i++){
-        sum+=tree[i].weight;
+        sum+=tree_kruskal[i].weight;
     }
     printf("kruskal:%d\n",sum);
 }
