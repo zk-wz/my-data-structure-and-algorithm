@@ -11,7 +11,7 @@ typedef struct
 }edge;
 
 // input the first vertex
-edge* prim(int i, edge *tree){
+void prim(int i, edge *tree){
     int j,k,m,v,min,max=100000;
     int d;
     edge e;
@@ -51,7 +51,6 @@ edge* prim(int i, edge *tree){
         }
     }
 
-    return tree;
 }
 
 // a is the num of the vertex, e is the num of the edge
